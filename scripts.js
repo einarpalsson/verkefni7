@@ -8,7 +8,24 @@ const LETTERS = `AÁBDÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖ`;
  * Byrja forrit.
  */
 function start() {
-  prompt('Hvort viltu kóða eða afkóða streng? Skrifaðu „kóða“ eða „afkóða“')
+  let thiscode = prompt(
+    "Hvort viltu kóða eða afkóða streng? Skrifaðu „kóða“ eða „afkóða“"
+  );
+  let kodun = prompt(
+    "Hversu mikið á að hliðra streng? Gefðu upp heiltölu á bilinu [1, 31]"
+  );
+
+  if (thiscode.toLocaleLowerCase() == "kóða") {
+    kodun;
+  } else if (thiscode.toLocaleLowerCase() == "afkóða") {
+    decode();
+  } else {
+    let answer = thiscode;
+    window.alert(
+      "Veit ekki hvaða aðgerð " + '"' + answer + '"' + " er. Reyndu aftur."
+    );
+    start();
+  }
 }
 
 // Hér er gott að commenta út til að vinna í encode/decode föllum fyrst og síðan „viðmóti“ forrits
@@ -36,9 +53,24 @@ function decode(str, n) {
   return str;
 }
 
-console.assert(encode('A', 3) === 'D', 'kóðun á A með n=3 er D');
-console.assert(decode('D', 3) === 'A', 'afkóðun á D með n=3 er A');
-console.assert(encode('AÁBDÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖ', 32) === 'AÁBDÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖ', 'kóðun með n=32 er byrjunarstrengur');
-console.assert(encode('AÁBDÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖ', 3) === 'DÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖAÁB', 'kóðun á stafrófi með n=3');
-console.assert(decode('DÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖAÁB', 3) === 'AÁBDÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖ', 'afkóðun á stafrófi með n=3');
-console.assert(decode(encode('HALLÓHEIMUR', 13), 13) === 'HALLÓHEIMUR', 'kóðun og afkóðun eru andhverf');
+console.assert(encode("A", 3) === "D", "kóðun á A með n=3 er D");
+console.assert(decode("D", 3) === "A", "afkóðun á D með n=3 er A");
+console.assert(
+  encode("AÁBDÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖ", 32) ===
+    "AÁBDÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖ",
+  "kóðun með n=32 er byrjunarstrengur"
+);
+console.assert(
+  encode("AÁBDÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖ", 3) ===
+    "DÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖAÁB",
+  "kóðun á stafrófi með n=3"
+);
+console.assert(
+  decode("DÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖAÁB", 3) ===
+    "AÁBDÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖ",
+  "afkóðun á stafrófi með n=3"
+);
+console.assert(
+  decode(encode("HALLÓHEIMUR", 13), 13) === "HALLÓHEIMUR",
+  "kóðun og afkóðun eru andhverf"
+);
