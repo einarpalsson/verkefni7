@@ -11,22 +11,20 @@ function start() {
   let thiscode = prompt(
     "Hvort viltu kóða eða afkóða streng? Skrifaðu „kóða“ eða „afkóða“"
   );
-  let kodun = prompt(
-    "Hversu mikið á að hliðra streng? Gefðu upp heiltölu á bilinu [1, 31]"
-  );
+  let kodun;
+    (thiscode == 'kóða' |'afkóða') ? kodun = window.prompt(
+      "Hversu mikið á að hliðra streng? Gefðu upp heiltölu á bilinu [1, 31]"
+    ) : kodun = window.prompt(
+      "Hversu mikið á að hliðra streng? Gefðu upp heiltölu á bilinu [1, 31]"
+    );
+}
 
-  if (thiscode.toLocaleLowerCase() == "kóða") {
-    kodun;
-  } else if (thiscode.toLocaleLowerCase() == "afkóða") {
-    decode();
-  } else {
-    let answer = thiscode;
+
+  /*let answer = thiscode;
     window.alert(
       "Veit ekki hvaða aðgerð " + '"' + answer + '"' + " er. Reyndu aftur."
     );
-    start();
-  }
-}
+}*/
 
 // Hér er gott að commenta út til að vinna í encode/decode föllum fyrst og síðan „viðmóti“ forrits
 start();
@@ -39,6 +37,12 @@ start();
  * @returns {string} Upprunalegi strengurinn hliðraður um n til hægri
  */
 function encode(str, n) {
+  let nafn = 'A';
+
+  for (let i = 0; i < nafn.length; i++) {
+    nafn.toLocaleUpperCase = nafn[i] + 3;
+  }
+  console.log(nafn);
   return str;
 }
 
