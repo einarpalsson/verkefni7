@@ -3,24 +3,15 @@
  */
 
 const LETTERS = `AÁBDÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖ`;
+let stafrofnum = Number.parseInt.LETTERS;
+console.log(stafrofnum);
 
 /**
  * Byrja forrit.
  */
-function start() {
-  let thiscode = prompt(
-    "Hvort viltu kóða eða afkóða streng? Skrifaðu „kóða“ eða „afkóða“"
-  );
-  let kodun;
-    (thiscode == 'kóða' |'afkóða') ? kodun = window.prompt(
-      "Hversu mikið á að hliðra streng? Gefðu upp heiltölu á bilinu [1, 31]"
-    ) : kodun = window.prompt(
-      "Hversu mikið á að hliðra streng? Gefðu upp heiltölu á bilinu [1, 31]"
-    );
-}
+function start() {}
 
-
-  /*let answer = thiscode;
+/*let answer = thiscode;
     window.alert(
       "Veit ekki hvaða aðgerð " + '"' + answer + '"' + " er. Reyndu aftur."
     );
@@ -37,7 +28,7 @@ start();
  * @returns {string} Upprunalegi strengurinn hliðraður um n til hægri
  */
 function encode(str, n) {
-  let nafn = 'A';
+  let nafn = "A";
 
   for (let i = 0; i < nafn.length; i++) {
     nafn.toLocaleUpperCase = nafn[i] + 3;
