@@ -3,13 +3,18 @@
  */
 
 const LETTERS = `AÁBDÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖ`;
-let stafrofnum = Number.parseInt.LETTERS;
-console.log(stafrofnum);
+let  LETTERS_arr = LETTERS.split(''); //array af LETTERS
+let testing = LETTERS_arr.join(''); //aftur til baka test
+
 
 /**
  * Byrja forrit.
  */
-function start() {}
+
+encode('EINAR', 3);
+
+ function start() {
+}
 
 /*let answer = thiscode;
     window.alert(
@@ -18,7 +23,7 @@ function start() {}
 }*/
 
 // Hér er gott að commenta út til að vinna í encode/decode föllum fyrst og síðan „viðmóti“ forrits
-start();
+
 
 /**
  * Kóðar streng með því að hliðra honum um n stök.
@@ -27,15 +32,46 @@ start();
  * @param {number} n Hliðrun, heiltala á bilinu [0, lengd stafrófs]
  * @returns {string} Upprunalegi strengurinn hliðraður um n til hægri
  */
-function encode(str, n) {
-  let nafn = "A";
 
-  for (let i = 0; i < nafn.length; i++) {
-    nafn.toLocaleUpperCase = nafn[i] + 3;
-  }
-  console.log(nafn);
+ // EINAR(3) = GKPDU.
+ // Æ(7) = E
+function encode(str, n) {
+  let newStr = str.split('');
+  let i = 0;
+  let j = 0;
+  do {
+
+    if (newStr[j] === LETTERS_arr[i]) {
+      newStr[j] = LETTERS_arr[i+n];
+    }
+    i++;
+    j++;
+    console.log(newStr)
+
+  } while (i < LETTERS.length & newStr[j] === LETTERS_arr[i] & j < newStr.length);
   return str;
+
+  /*for (let i = 0; i < LETTERS_arr.length; i++) {
+    for (let j = 0; j < newStr.length; j++) {
+      if (newStr[j] === LETTERS_arr[i] & (newStr.length+n) <= 31) {
+        newStr[j] = LETTERS_arr[i+n];
+      }
+      console.log(newStr);
+    }
+  }*/
+
+
 }
+
+/*else if (newStr[j] === LETTERS_arr[i] & LETTERS_arr[i+n] === undefined) {
+  newStr[j] = LETTERS_arr[32-(31-n)];
+}*/
+
+
+
+
+
+
 
 /**
  * Afkóðar streng með því að hliðra honum um n stök.
@@ -44,7 +80,7 @@ function encode(str, n) {
  * @param {number} n Hliðrun, heiltala á bilinu [0, lengd stafrófs]
  * @returns {string} Upprunalegi strengurinn hliðraður um n til vinstri
  */
-function decode(str, n) {
+/*function decode(str, n) {
   return str;
 }
 
@@ -68,4 +104,4 @@ console.assert(
 console.assert(
   decode(encode("HALLÓHEIMUR", 13), 13) === "HALLÓHEIMUR",
   "kóðun og afkóðun eru andhverf"
-);
+);*/
