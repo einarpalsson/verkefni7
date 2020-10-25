@@ -37,7 +37,8 @@ encode('EINAR', 3);
  // Æ(7) = E
 function encode(str, n) {
   let newStr = str.split('');
-  let i = 0;
+  let tester = [];
+  /*let i = 0;
   let j = 0;
   do {
 
@@ -49,18 +50,20 @@ function encode(str, n) {
     console.log(newStr)
 
   } while (i < LETTERS.length & newStr[j] === LETTERS_arr[i] & j < newStr.length);
-  return str;
+  return str;*/
 
-  /*for (let i = 0; i < LETTERS_arr.length; i++) {
-    for (let j = 0; j < newStr.length; j++) {
-      if (newStr[j] === LETTERS_arr[i] & (newStr.length+n) <= 31) {
-        newStr[j] = LETTERS_arr[i+n];
+  for (let i = 0; i < newStr.length; i++) {
+    for (let j = 0; j < LETTERS_arr.length; j++) {
+      if (newStr[i] === LETTERS_arr[j] & j+n <= 31) {
+        tester[i] = LETTERS_arr[j+n];
+      } else if (newStr[i] === LETTERS_arr[j] & j+n > 31) {
+        tester[i] = LETTERS_arr[j-(32-n)];
       }
-      console.log(newStr);
     }
-  }*/
-
-
+  }
+  str = tester.join('')
+  console.log(str);
+return str;
 }
 
 /*else if (newStr[j] === LETTERS_arr[i] & LETTERS_arr[i+n] === undefined) {
@@ -82,10 +85,10 @@ function encode(str, n) {
  */
 /*function decode(str, n) {
   return str;
-}
+}*/
 
 console.assert(encode("A", 3) === "D", "kóðun á A með n=3 er D");
-console.assert(decode("D", 3) === "A", "afkóðun á D með n=3 er A");
+//console.assert(decode("D", 3) === "A", "afkóðun á D með n=3 er A");
 console.assert(
   encode("AÁBDÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖ", 32) ===
     "AÁBDÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖ",
@@ -96,7 +99,7 @@ console.assert(
     "DÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖAÁB",
   "kóðun á stafrófi með n=3"
 );
-console.assert(
+/*console.assert(
   decode("DÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖAÁB", 3) ===
     "AÁBDÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖ",
   "afkóðun á stafrófi með n=3"
