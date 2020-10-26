@@ -36,20 +36,23 @@ function start() {
 
   console.log(kodun);
   console.log(svar);
-  let n = Number.parseInt(svar);
-  let hlidrun =
-    Number.isInteger(n) && n >= 1 && n <= 31
-      ? window.prompt(
-          "Gefðu upp strenginn sem á að " + kodun + " með hliðrun " + svar + ":"
-        )
-      : window.alert(
-          svar + " er ekki heiltala á bilinu [1, 31]. Reyndu aftur."
-        );
-  console.log(hlidrun);
 
-  /*hlidrun = hlidrun.toLocaleUpperCase();
+  let n = Number.parseInt(svar);
+
+
+  let hlidrun;
+  if (Number.isInteger(n) && n >= 1 && n <= 31) {
+    hlidrun = window.prompt("Gefðu upp strenginn sem á að " + kodun + " með hliðrun " + svar + ":");
+  } else {
+    window.alert(svar + " er ekki heiltala á bilinu [1, 31]. Reyndu aftur.");
+    start();
+    return;
+  }
+
+  hlidrun = hlidrun.toLocaleUpperCase();
+  console.log(hlidrun)
   let hlidrun_arr = hlidrun.split("");
-  console.log(hlidrun_arr);*/
+  console.log(hlidrun_arr);
 }
 
 // Hér er gott að commenta út til að vinna í encode/decode föllum fyrst og síðan „viðmóti“ forrits
