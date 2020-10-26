@@ -3,9 +3,7 @@
  */
 
 const LETTERS = `AÁBDÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖ`;
-let  LETTERS_arr = LETTERS.split(''); //array af LETTERS
-let testing = LETTERS_arr.join(''); //aftur til baka test
-
+let LETTERS_arr = LETTERS.split(""); //array af LETTERS
 
 /**
  * Byrja forrit.
@@ -13,33 +11,48 @@ let testing = LETTERS_arr.join(''); //aftur til baka test
 
 start();
 
- function start() {
-   let kodun = window.prompt('Hvort viltu kóða eða afkóða streng? Skrifaðu „kóða“ eða „afkóða“');
-   let kodun_lower = kodun.toLocaleLowerCase();
-   console.log(kodun_lower);
+function start() {
+  let kodun = window.prompt(
+    "Hvort viltu kóða eða afkóða streng? Skrifaðu „kóða“ eða „afkóða“"
+  );
+  let kodun_lower = kodun.toLocaleLowerCase();
 
-   if (kodun_lower !== 'kóða' && kodun_lower !== 'afkóða') {
-    window.alert('Veit ekki hvaða aðgerð ' + '"' + kodun + '"' + ' er. Reyndu aftur.');
+  if (kodun_lower !== "kóða" && kodun_lower !== "afkóða") {
+    window.alert(
+      "Veit ekki hvaða aðgerð " + '"' + kodun + '"' + " er. Reyndu aftur."
+    );
     start();
     return;
-   }
+  }
 
-   let svar =
-      kodun_lower === 'kóða' ? window.prompt('Hversu mikið á að hliðra streng? Gefðu upp heiltölu á bilinu [1, 31]') :
-      window.prompt('Hversu mikið á að hliðra streng? Gefðu upp heiltölu á bilinu [1, 31]');
+  let svar =
+    kodun_lower === "kóða"
+      ? window.prompt(
+          "Hversu mikið á að hliðra streng? Gefðu upp heiltölu á bilinu [1, 31]"
+        )
+      : window.prompt(
+          "Hversu mikið á að hliðra streng? Gefðu upp heiltölu á bilinu [1, 31]"
+        );
 
+  console.log(kodun);
+  console.log(svar);
+  let n = Number.parseInt(svar);
+  let hlidrun =
+    Number.isInteger(n) && n >= 1 && n <= 31
+      ? window.prompt(
+          "Gefðu upp strenginn sem á að " + kodun + " með hliðrun " + svar + ":"
+        )
+      : window.alert(
+          svar + " er ekki heiltala á bilinu [1, 31]. Reyndu aftur."
+        );
+  console.log(hlidrun);
 
-   console.log(kodun);
-   console.log(svar);
-   let n = Number.parseInt(svar);
-   let hlidrun = Number.isInteger(n) && n >= 1 && n <=31  ? window.prompt('Gefðu upp strenginn sem á að ' +  kodun + ' með hliðrun ' + svar + ':') : window.alert(svar + ' er ekki heiltala á bilinu [1, 31]. Reyndu aftur.');
-   console.log(hlidrun);
-
-   let all_isl = true;
+  /*hlidrun = hlidrun.toLocaleUpperCase();
+  let hlidrun_arr = hlidrun.split("");
+  console.log(hlidrun_arr);*/
 }
 
 // Hér er gott að commenta út til að vinna í encode/decode föllum fyrst og síðan „viðmóti“ forrits
-
 
 /**
  * Kóðar streng með því að hliðra honum um n stök.
@@ -49,24 +62,24 @@ start();
  * @returns {string} Upprunalegi strengurinn hliðraður um n til hægri
  */
 
- // EINAR(3) = GKPDU.
- // Æ(7) = E
+// EINAR(3) = GKPDU.
+// Æ(7) = E
 function encode(str, n) {
-  let newStr = str.split('');
+  let newStr = str.split("");
   let tester = [];
 
   for (let i = 0; i < newStr.length; i++) {
     for (let j = 0; j < LETTERS_arr.length; j++) {
-      if (newStr[i] === LETTERS_arr[j] && j+n <= 31) {
-        tester[i] = LETTERS_arr[j+n];
-      } else if (newStr[i] === LETTERS_arr[j] && j+n > 31) {
-        tester[i] = LETTERS_arr[j-(32-n)];
+      if (newStr[i] === LETTERS_arr[j] && j + n <= 31) {
+        tester[i] = LETTERS_arr[j + n];
+      } else if (newStr[i] === LETTERS_arr[j] && j + n > 31) {
+        tester[i] = LETTERS_arr[j - (32 - n)];
       }
     }
   }
-  str = tester.join('')
+  str = tester.join("");
   console.log(str);
-return str;
+  return str;
 }
 
 /**
@@ -77,23 +90,22 @@ return str;
  * @returns {string} Upprunalegi strengurinn hliðraður um n til vinstri
  */
 
-
 function decode(str, n) {
-  let newStr = str.split('');
+  let newStr = str.split("");
   let tester = [];
 
   for (let i = 0; i < newStr.length; i++) {
     for (let j = 0; j < LETTERS_arr.length; j++) {
-      if (newStr[i] === LETTERS_arr[j] && j-n >= 0) {
-        tester[i] = LETTERS_arr[j-n];
-      } else if (newStr[i] === LETTERS_arr[j] && j-n < 0) {
-        tester[i] = LETTERS_arr[j + (32-n)];
+      if (newStr[i] === LETTERS_arr[j] && j - n >= 0) {
+        tester[i] = LETTERS_arr[j - n];
+      } else if (newStr[i] === LETTERS_arr[j] && j - n < 0) {
+        tester[i] = LETTERS_arr[j + (32 - n)];
       }
     }
   }
-  str = tester.join('');
+  str = tester.join("");
   console.log(str);
-return str;
+  return str;
 }
 
 console.assert(encode("A", 3) === "D", "kóðun á A með n=3 er D");
