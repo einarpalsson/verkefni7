@@ -9,7 +9,7 @@ let LETTERS_arr = LETTERS.split(""); //array af LETTERS
  * Byrja forrit.
  */
 start();
-
+encode('EINAR' ,3);
 function start() {
   let kodun = window.prompt(
     "Hvort viltu kóða eða afkóða streng? Skrifaðu „kóða“ eða „afkóða“"
@@ -63,7 +63,7 @@ function start() {
     start();
     return;
   } else if (hlidrunCheck === '' && kodun === 'kóða') {
-    window.alert(encode(hlidrun, svar));
+    window.alert(encode(hlidrun, n));
   } else if (hlidrunCheck === '' && kodun === 'afkóða') {
     let afkodadur_texti = decode(hlidrun, svar);
     window.alert(afkodadur_texti);
@@ -95,12 +95,11 @@ function validLetter(str) {
 function encode(str, n) {
   let newStr = str.split("");
   let tester = [];
-
   for (let i = 0; i < newStr.length; i++) {
     for (let j = 0; j < LETTERS_arr.length; j++) {
-      if (newStr[i] === LETTERS_arr[j] && j + n <= 31) {
+      if (newStr[i] === LETTERS_arr[j] && (j + n) <= 31) {
         tester[i] = LETTERS_arr[j + n];
-      } else if (newStr[i] === LETTERS_arr[j] && j + n > 31) {
+      } else if (newStr[i] === LETTERS_arr[j] && (j + n) > 31) {
         tester[i] = LETTERS_arr[j - (32 - n)];
       }
     }
@@ -138,7 +137,7 @@ function decode(str, n) {
 }
 
 
-/*console.assert(encode("A", 3) === "D", "kóðun á A með n=3 er D");
+console.assert(encode("A", 3) === "D", "kóðun á A með n=3 er D");
 console.assert(decode("D", 3) === "A", "afkóðun á D með n=3 er A");
 console.assert(
   encode("AÁBDÐEÉFGHIÍJKLMNOÓPRSTUÚVXYÝÞÆÖ", 32) ===
@@ -158,4 +157,4 @@ console.assert(
 console.assert(
   decode(encode("HALLÓHEIMUR", 13), 13) === "HALLÓHEIMUR",
   "kóðun og afkóðun eru andhverf"
-);*/
+);
